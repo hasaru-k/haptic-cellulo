@@ -1,30 +1,18 @@
 import logo from './logo.svg';
 import './App.css';
 import { useEffect, useState } from 'react';
+import RobotMap from './components/RobotMap';
 
 let url = "http://cellulo-live.herokuapp.com/pose";
 
 function App() {
 
-  const [poses, setPoses] = useState('');
-
-  fetch(url)
-  .then((resp) => resp.json())
-  .then(function(data) {
-    setPoses(JSON.stringify(data));
-  })
-  .catch(function(error) {
-    console.log(error);
-  });
-
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+        <RobotMap macAddress="00:1B:44:11:3A:B7"></RobotMap> 
+        <RobotMap macAddress="00:1B:44:11:3A:B6"></RobotMap> 
       </header>
-      <p>
-        {poses}
-      </p>
     </div>
   );
 }
