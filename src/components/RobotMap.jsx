@@ -49,7 +49,7 @@ class RobotMap extends React.Component {
     }
 
     componentDidUpdate(prevProps) {
-        if (prevProps.name != this.props.name) {
+        if (prevProps.name !== this.props.name) {
           this.fetchPose();
         }
     }
