@@ -15,7 +15,7 @@ class RobotDisplay extends React.Component {
     }
 
     componentDidMount() {
-        fetch(`http://cellulo-live.herokuapp.com/robots/`)
+        fetch(`https://cellulo-live.herokuapp.com/robots/`)
             .then(res => res.json())
             .then(
             (res) => {
