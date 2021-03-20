@@ -13,9 +13,9 @@ class RobotMap extends React.Component {
       };
     }
 
-    componentDidMount() {
-        const macAddress = this.props.macAddress;
-        fetch(`http://cellulo-live.herokuapp.com/pose?macAddress=${macAddress}`)
+    fetchPose() {
+        const name = this.props.name;
+        fetch(`http://cellulo-live.herokuapp.com/pose?name=${name}`)
             .then(res => res.json())
             .then(
             (res) => {
@@ -43,6 +43,16 @@ class RobotMap extends React.Component {
             }
             )
     }
+
+    componentDidMount() {
+        this.fetchPose();
+    }
+
+    componentDidUpdate(prevProps) {
+        if (prevProps.name != this.props.name) {
+          this.fetchPose();
+        }
+    }
   
     render() {
       const { error, isLoaded, x, y, theta } = this.state;
@@ -52,7 +62,7 @@ class RobotMap extends React.Component {
         return <div>Loading...</div>;
       } else {
         return (
-            <div>Robot {this.props.macAddress} is at (x={x},y={y},theta={theta})</div>
+            <div>Robot {this.props.name} is at (x={x},y={y},theta={theta})</div>
         );
       }
     }
