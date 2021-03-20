@@ -12,7 +12,6 @@ class RobotDisplay extends React.Component {
         robots: [],
         selectedRobot: ""
       };
-      this.inputRef = React.createRef();
     }
 
     componentDidMount() {
@@ -62,8 +61,7 @@ class RobotDisplay extends React.Component {
                 <Form.Group>
                     <Form.Label>Tracking robot:</Form.Label>
                     <Form.Control as="select"
-                      onChange={e => this.setSelectedRobot(e.target.value)} 
-                      ref={this.inputRef}>
+                      onChange={e => this.setSelectedRobot(e.target.value)}>
                     {robots.map((robot,i) => <option key={i}>{robot}</option>)}
                     </Form.Control>
                 </Form.Group>
