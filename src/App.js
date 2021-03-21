@@ -11,12 +11,12 @@ function App() {
     <div className="App">
       <header className="App-header">
         <p></p>
-        <div class="container">
-          <div class="row">
-            <div class="col-sm">
+        <div className="container">
+          <div className="row">
+            <div className="col-sm">
               <RobotDisplay></RobotDisplay>
             </div>
-            <div class="col-sm">
+            <div className="col-sm">
               <RobotDisplay></RobotDisplay>
             </div>
           </div>

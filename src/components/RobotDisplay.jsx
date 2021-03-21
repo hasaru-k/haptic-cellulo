@@ -59,7 +59,7 @@ class RobotDisplay extends React.Component {
             <div>
                 <RobotMap name={selectedRobot}></RobotMap> 
                 <Form.Group>
-                    <Form.Label>Tracking robot:</Form.Label>
+                    <Form.Label>Tracking player:</Form.Label>
                     <Form.Control as="select"
                       onChange={e => this.setSelectedRobot(e.target.value)}>
                     {robots.map((robot,i) => <option key={i}>{robot}</option>)}
