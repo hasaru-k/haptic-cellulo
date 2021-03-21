@@ -15,7 +15,7 @@ class RobotMap extends React.Component {
 
     fetchPose() {
         const name = this.props.name;
-        fetch(`https://cellulo-live.herokuapp.com/pose?name=${name}`)
+        fetch(`/pose?name=${name}`)
             .then(res => res.json())
             .then(
             (res) => {
