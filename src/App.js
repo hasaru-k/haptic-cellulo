@@ -1,29 +1,39 @@
+import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import { useEffect, useState } from 'react';
 import RobotDisplay from './components/RobotDisplay';
+import { render } from '@testing-library/react';
 
-let url = "http://cellulo-live.herokuapp.com/pose";
+function getQuery(query) {
+  return new URLSearchParams(window.location.search).get(query);
+}
 
-function App() {
+class App extends React.Component {
 
-  return (
-    <div className="App">
-      <header className="App-header">
-        <p></p>
-        <div className="container">
-          <div className="row">
-            <div className="col-sm">
-              <RobotDisplay></RobotDisplay>
-            </div>
-            <div className="col-sm">
-              <RobotDisplay></RobotDisplay>
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <header className="App-header">
+          <p></p>
+          <div className="container">
+            <div className="row">
+              <div className="col-sm">
+                <RobotDisplay queryRobot={getQuery('left')}></RobotDisplay>
+              </div>
+              <div className="col-sm">
+                <RobotDisplay queryRobot={getQuery('right')}></RobotDisplay>
+              </div>
             </div>
           </div>
-        </div>
-      </header>
-    </div>
-  );
+        </header>
+      </div>
+    );
+  }
 }
 
 export default App;

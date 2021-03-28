@@ -1,5 +1,5 @@
 import React from 'react';
-import {Alert} from 'react-bootstrap';
+import {Alert, Spinner} from 'react-bootstrap';
 import Location from './Location';
 import nucleus from '../assets/nucleus.png';
 import rough_er from '../assets/rough_er.png';
@@ -92,9 +92,9 @@ class RobotMap extends React.Component {
       } else {
         return (
           <div>
-            <Location src={location} caption={caption}></Location>
-            <Alert variant="info">
-              {this.props.name} is at (x={x},y={y},theta={theta})
+            <Location src={location} caption={caption} name={this.props.name}></Location>
+            <Alert variant="dark" style={{fontSize: "1rem"}}>
+              (x={x}, y={y}, theta={theta})
             </Alert>
           </div>
         );

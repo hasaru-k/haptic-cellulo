@@ -1,5 +1,5 @@
 import React from 'react';
-import {Figure} from 'react-bootstrap';
+import {Figure, Spinner} from 'react-bootstrap';
 import pastel2 from '../assets/pastel2.png';
 
 function Location(props) {
@@ -10,9 +10,13 @@ function Location(props) {
                     src={props.src}
                     style={{backgroundImage: `url(${pastel2})`,
                             backgroundPosition: "center",
-                            backgroundSize: "cover"}}
+                            backgroundSize: "cover",
+                            display: "block",
+                            width: "100%"}}
                 />
-                <Figure.Caption>
+                <Spinner animation="grow" variant="success" size="sm" 
+                    style={{marginRight: "2%", marginBottom: "0.5%"}} />
+                <Figure.Caption style={{display: "inline"}}>
                 {props.caption}
                 </Figure.Caption>
             </Figure>
