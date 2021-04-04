@@ -1,5 +1,5 @@
 import React from 'react';
-import {Alert, Spinner} from 'react-bootstrap';
+import {Alert, Spinner, Span, Badge} from 'react-bootstrap';
 import Location from './Location';
 import nucleus from '../assets/nucleus.png';
 import rough_er from '../assets/rough_er.png';
@@ -7,6 +7,7 @@ import golgi_body from '../assets/golgi_body.png';
 
 class RobotMap extends React.Component {
 
+    intervalId = 0;
     constructor(props) {
       super(props);
       this.state = {
@@ -16,7 +17,8 @@ class RobotMap extends React.Component {
         y: "",
         theta: "",
         location: nucleus,
-        caption: "Location: nucleus. The knowledge centre of the cell."
+        caption: "Location: nucleus. The knowledge centre of the cell.",
+        lastFetched: null
       };
     }
 
@@ -40,7 +42,7 @@ class RobotMap extends React.Component {
       }
     }
 
-    fetchPose() {
+  async fetchPose() {
         const name = this.props.name;
         fetch(`https://cellulo-live.herokuapp.com/pose?name=${name}`)
             .then(res => res.json())
@@ -50,11 +52,13 @@ class RobotMap extends React.Component {
                     console.log(res);
                     let pose = res.content;
                     console.log(pose);
+                    var date = new Date();
                     this.setState({
                         isLoaded: true,
                         x: pose.x,
                         y: pose.y,
-                        theta: pose.theta
+                        theta: pose.theta,
+                        lastFetched: `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}:${date.getMilliseconds()}`
                     });
                     this.updateLocation(pose);
                 } else {
@@ -74,6 +78,7 @@ class RobotMap extends React.Component {
     }
 
     componentDidMount() {
+        this.intervalId = setInterval(this.fetchPose.bind(this), 200);
         this.fetchPose();
     }
 
@@ -82,9 +87,10 @@ class RobotMap extends React.Component {
           this.fetchPose();
         }
     }
-  
+
     render() {
-      const { error, isLoaded, x, y, theta, location, caption } = this.state;
+      const { error, isLoaded, x, y, theta, location, caption, lastFetched } = this.state;
+      console.log(lastFetched);
       if (error) {
         return <div>Error: {error.message}</div>;
       } else if (!isLoaded) {
@@ -92,10 +98,15 @@ class RobotMap extends React.Component {
       } else {
         return (
           <div>
-            <Location src={location} caption={caption} name={this.props.name}></Location>
-            <Alert variant="dark" style={{fontSize: "1rem"}}>
-              (x={x}, y={y}, theta={theta})
-            </Alert>
+            <Location 
+                src={location} 
+                caption={caption} 
+                lastFetched={lastFetched}
+                name={this.props.name}>
+                x={x}
+                y={y}
+                theta={theta}
+            </Location>
           </div>
         );
       }
