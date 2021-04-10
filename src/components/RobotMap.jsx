@@ -1,9 +1,9 @@
 import React from 'react';
 import {Alert, Spinner, Span, Badge} from 'react-bootstrap';
 import Location from './Location';
-import nucleus from '../assets/nucleus.png';
-import rough_er from '../assets/rough_er.png';
-import golgi_body from '../assets/golgi_body.png';
+import nucleus from '../assets/nucleus.mp4';
+import mitochondrion from '../assets/mitochondrion.mp4';
+import golgi_body from '../assets/golgi_body.mp4';
 
 class RobotMap extends React.Component {
 
@@ -23,21 +23,20 @@ class RobotMap extends React.Component {
     }
 
     updateLocation(pose) {
-      if (pose.x < 50) {
+      if (pose.x < 15) {
         this.setState({
           location: nucleus,
-          caption: "Location: nucleus. The knowledge centre of the cell."
+          caption: "The knowledge centre of the cell."
         });
       } else if (pose.x < 100) {
         this.setState({
-          location: rough_er,
-          caption: `Location: rough endoplasmic reticulum. Tiny ribosomes cling to the endoplasmic reticulum, injecting"
-                    proteins into it.`
+          location: mitochondrion,
+          caption: `The powerhouse of the cell.`
         });
       } else {
         this.setState({
           location: golgi_body,
-          caption: "Location: golgi body. The packaging warehouse of the cell."
+          caption: "The packaging warehouse of the cell."
         });
       }
     }
@@ -49,16 +48,14 @@ class RobotMap extends React.Component {
             .then(
             (res) => {
                 if (res.type === 'success') {
-                    console.log(res);
                     let pose = res.content;
-                    console.log(pose);
                     var date = new Date();
                     this.setState({
                         isLoaded: true,
                         x: pose.x,
                         y: pose.y,
                         theta: pose.theta,
-                        lastFetched: `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}:${date.getMilliseconds()}`
+                        lastFetched: date.toLocaleTimeString('en-US')
                     });
                     this.updateLocation(pose);
                 } else {
@@ -70,27 +67,23 @@ class RobotMap extends React.Component {
             // exceptions from actual bugs in components.
             (error) => {
                 this.setState({
-                isLoaded: true,
-                error
+                  isLoaded: true,
+                  error: error
                 });
             }
             )
     }
 
     componentDidMount() {
-        this.intervalId = setInterval(this.fetchPose.bind(this), 200);
+        this.intervalId = setInterval(this.fetchPose.bind(this), 500);
         this.fetchPose();
-    }
-
-    componentDidUpdate(prevProps) {
-        if (prevProps.name !== this.props.name) {
-          this.fetchPose();
-        }
     }
 
     render() {
       const { error, isLoaded, x, y, theta, location, caption, lastFetched } = this.state;
-      console.log(lastFetched);
+      if (this.props.name === "bloop") {
+        console.log(`x=${x},y=${y}`);
+      }
       if (error) {
         return <div>Error: {error.message}</div>;
       } else if (!isLoaded) {
@@ -102,10 +95,10 @@ class RobotMap extends React.Component {
                 src={location} 
                 caption={caption} 
                 lastFetched={lastFetched}
-                name={this.props.name}>
+                name={this.props.name}
                 x={x}
                 y={y}
-                theta={theta}
+                theta={theta}>
             </Location>
           </div>
         );

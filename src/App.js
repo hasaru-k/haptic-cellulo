@@ -22,10 +22,10 @@ class App extends React.Component {
           <p></p>
           <div className="container">
             <div className="row">
-              <div className="col-sm">
+              <div className="col">
                 <RobotDisplay queryRobot={getQuery('left')}></RobotDisplay>
               </div>
-              <div className="col-sm">
+              <div className="col offset-1">
                 <RobotDisplay queryRobot={getQuery('right')}></RobotDisplay>
               </div>
             </div>

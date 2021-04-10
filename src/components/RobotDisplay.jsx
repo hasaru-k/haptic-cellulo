@@ -1,5 +1,5 @@
 import React from 'react';
-import {Form, Spinner} from 'react-bootstrap';
+import {Form, Badge, Button} from 'react-bootstrap';
 import RobotMap from './RobotMap';
 
 class RobotDisplay extends React.Component {
@@ -53,7 +53,9 @@ class RobotDisplay extends React.Component {
       let name = this.props.queryRobot;
       return (
         <div>
-            <Form.Label>Tracking player: {name}</Form.Label>
+            <Button variant="dark" style={{fontSize: "1.5rem", width: "100%", marginBottom: "20px"}} disabled>
+              Player {name}
+            </Button>
             <RobotMap name={name}></RobotMap> 
         </div>
       );
