@@ -1,0 +1,14 @@
+[
+    {
+        "Q": "Which organelle contains its own form of DNA which is inherited maternally?",
+        "A": "mitochondria"
+    },
+    {
+        "Q": "Which organism packages and processes lipids and proteins?",
+        "A": "golgi_body"
+    },
+    {
+        "Q": "Which organism consisting of RNA and proteins is the site of protein synthesis (that is, the translation of messenger RNA codons into an amino acid sequence)?",
+        "A": "ribosomes"
+    }
+]

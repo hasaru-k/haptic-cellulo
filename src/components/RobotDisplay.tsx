@@ -1,6 +1,6 @@
 import React from 'react';
 import {Form, Badge, Button} from 'react-bootstrap';
-import RobotMap from './RobotMap';
+import LocationComponent from './LocationComponent';
 
 interface RobotDisplayProps {
   queryRobot: string | null,
@@ -70,7 +70,7 @@ class RobotDisplay extends React.Component<RobotDisplayProps, RobotDisplayState>
             <Button variant="dark" style={{fontSize: "1.5rem", width: "100%", marginBottom: "20px"}} disabled>
               Player {name}
             </Button>
-            <RobotMap name={name}></RobotMap> 
+            <LocationComponent name={name}></LocationComponent> 
         </div>
       );
     }
@@ -84,7 +84,7 @@ class RobotDisplay extends React.Component<RobotDisplayProps, RobotDisplayState>
       } else {
         return (
           <div>
-              <RobotMap name={selectedRobot}></RobotMap> 
+              <LocationComponent name={selectedRobot}></LocationComponent> 
               <Form.Group>
                   <Form.Label>Tracking player:</Form.Label>
                   <Form.Control as="select"

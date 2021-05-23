@@ -1,12 +1,12 @@
 import React from 'react';
 import {Alert, Spinner, Badge} from 'react-bootstrap';
 import Span from 'react-bootstrap';
-import Location from './Location';
+import Location from './UI/Location';
 import nucleus from '../assets/nucleus.mp4';
 import mitochondrion from '../assets/mitochondrion.mp4';
 import golgi_body from '../assets/golgi_body.mp4';
 
-class RobotMap extends React.Component<any,any> {
+class LocationComponent extends React.Component<any,any> {
 
     intervalId: any = 0;
     constructor(props: any) {
@@ -106,4 +106,4 @@ class RobotMap extends React.Component<any,any> {
       }
     }
   }
-export default RobotMap;
+export default LocationComponent;

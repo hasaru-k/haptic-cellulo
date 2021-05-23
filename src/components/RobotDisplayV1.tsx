@@ -1,6 +1,6 @@
 import React from 'react';
 import {Form} from 'react-bootstrap';
-import RobotMap from './RobotMap';
+import LocationComponent from './LocationComponent';
 
 interface RobotDisplayProps {
 }
@@ -61,7 +61,7 @@ class RobotDisplay extends React.Component<any,any> {
       } else {
         return (
             <div>
-                <RobotMap name={selectedRobot}></RobotMap> 
+                <LocationComponent name={selectedRobot}></LocationComponent> 
                 <Form.Group>
                     <Form.Label>Tracking player:</Form.Label>
                     <Form.Control as="select"

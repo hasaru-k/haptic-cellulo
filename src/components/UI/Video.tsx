@@ -7,12 +7,13 @@ function Video(props: any) {
                 playsInline
                 loop
                 src={props.src}
-                height={"100%"}
-                width={"100%"}
+                height={"60%"}
+                width={"80%"}
                 style={{
                     display: "block",
                     boxShadow: "0px 1px 17px 0px #ffffff38",
-                    borderRadius: "5px"}}>
+                    borderRadius: "5px",
+                    marginLeft: "10%"}}>
             </video>
 }
 
