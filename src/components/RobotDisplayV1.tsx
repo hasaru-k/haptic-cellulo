@@ -2,9 +2,12 @@ import React from 'react';
 import {Form} from 'react-bootstrap';
 import RobotMap from './RobotMap';
 
-class RobotDisplay extends React.Component {
+interface RobotDisplayProps {
+}
 
-    constructor(props) {
+class RobotDisplay extends React.Component<any,any> {
+
+    constructor(props: any) {
       super(props);
       this.state = {
         error: null,
@@ -43,7 +46,7 @@ class RobotDisplay extends React.Component {
         
     }
 
-    setSelectedRobot(robot) {
+    setSelectedRobot(robot: any) {
       this.setState({
         selectedRobot: robot
       });
@@ -63,7 +66,7 @@ class RobotDisplay extends React.Component {
                     <Form.Label>Tracking player:</Form.Label>
                     <Form.Control as="select"
                       onChange={e => this.setSelectedRobot(e.target.value)}>
-                    {robots.map((robot,i) => <option key={i}>{robot}</option>)}
+                    {robots.map((robot : any, i: any) => <option key={i}>{robot}</option>)}
                     </Form.Control>
                 </Form.Group>
             </div>

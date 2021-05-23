@@ -1,14 +1,15 @@
 import React from 'react';
-import {Alert, Spinner, Span, Badge} from 'react-bootstrap';
+import {Alert, Spinner, Badge} from 'react-bootstrap';
+import Span from 'react-bootstrap';
 import Location from './Location';
 import nucleus from '../assets/nucleus.mp4';
 import mitochondrion from '../assets/mitochondrion.mp4';
 import golgi_body from '../assets/golgi_body.mp4';
 
-class RobotMap extends React.Component {
+class RobotMap extends React.Component<any,any> {
 
-    intervalId = 0;
-    constructor(props) {
+    intervalId: any = 0;
+    constructor(props: any) {
       super(props);
       this.state = {
         error: null,
@@ -22,7 +23,7 @@ class RobotMap extends React.Component {
       };
     }
 
-    updateLocation(pose) {
+    updateLocation(pose: any) {
       if (pose.x < 15) {
         this.setState({
           location: nucleus,
@@ -93,12 +94,12 @@ class RobotMap extends React.Component {
           <div>
             <Location 
                 src={location} 
-                caption={caption} 
-                lastFetched={lastFetched}
-                name={this.props.name}
-                x={x}
-                y={y}
-                theta={theta}>
+                caption={String(caption)} 
+                lastFetched={String(lastFetched)}
+                name={String(this.props.name)}
+                x={Number(x)}
+                y={Number(y)}
+                theta={Number(theta)}>
             </Location>
           </div>
         );

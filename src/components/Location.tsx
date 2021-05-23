@@ -2,8 +2,20 @@ import React from 'react';
 import {Figure, Spinner, Badge, Alert, Button} from 'react-bootstrap';
 import pastel2 from '../assets/pastel2.png';
 import Video from './Video';
+import { FunctionComponent } from 'react'; // importing FunctionComponent
 
-function Location(props) {
+interface LocationProps {
+    x: number,
+    y: number,
+    theta: number,
+    src: string,
+    caption: string,
+    lastFetched: string | null,
+    name: string
+}
+
+const Location: FunctionComponent<LocationProps> = (props: LocationProps): any => { 
+    /* function body */ 
     console.log(`x=${props.x},y=${props.y}`);
     return <div>
                 <Figure>
@@ -18,6 +30,6 @@ function Location(props) {
                 </Button>
                 <Button variant="dark" style={{fontSize: "1rem", width: "100%"}} disabled>Last updated at {props.lastFetched === null ? "" : props.lastFetched}</Button>
             </div>
-}
+};
 
 export default Location;

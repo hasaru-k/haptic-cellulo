@@ -2,12 +2,26 @@ import React from 'react';
 import {Form, Badge, Button} from 'react-bootstrap';
 import RobotMap from './RobotMap';
 
-class RobotDisplay extends React.Component {
+interface RobotDisplayProps {
+  queryRobot: string | null,
+}
 
-    constructor(props) {
+interface RobotDisplayState {
+  isLoaded: boolean,
+  robots: Array<string>,
+  selectedRobot: string,
+  error: any,
+}
+
+class RobotDisplay extends React.Component<RobotDisplayProps, RobotDisplayState> {
+
+    constructor(props: RobotDisplayProps) {
       super(props);
       this.state = {
-        selectedRobot: ""
+        isLoaded: false,
+        robots: [],
+        selectedRobot: "",
+        error: null
       };
     }
 
@@ -43,7 +57,7 @@ class RobotDisplay extends React.Component {
         
     }
 
-    setSelectedRobot(robot) {
+    setSelectedRobot(robot: string) {
       this.setState({
         selectedRobot: robot
       });
