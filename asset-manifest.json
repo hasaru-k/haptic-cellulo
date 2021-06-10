@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/haptic-cellulo/static/css/main.4a77395f.chunk.css",
-    "main.js": "/haptic-cellulo/static/js/main.745bbc4a.chunk.js",
-    "main.js.map": "/haptic-cellulo/static/js/main.745bbc4a.chunk.js.map",
+    "main.js": "/haptic-cellulo/static/js/main.7c472c9f.chunk.js",
+    "main.js.map": "/haptic-cellulo/static/js/main.7c472c9f.chunk.js.map",
     "runtime-main.js": "/haptic-cellulo/static/js/runtime-main.9c7cad24.js",
     "runtime-main.js.map": "/haptic-cellulo/static/js/runtime-main.9c7cad24.js.map",
     "static/css/2.4c97ca4f.chunk.css": "/haptic-cellulo/static/css/2.4c97ca4f.chunk.css",
@@ -23,6 +23,6 @@
     "static/css/2.4c97ca4f.chunk.css",
     "static/js/2.e7d1f7f2.chunk.js",
     "static/css/main.4a77395f.chunk.css",
-    "static/js/main.745bbc4a.chunk.js"
+    "static/js/main.7c472c9f.chunk.js"
   ]
 }
