@@ -18,7 +18,7 @@ class LocationComponent extends React.Component<any,any> {
         y: "",
         theta: "",
         location: nucleus,
-        caption: "Location: nucleus. The knowledge centre of the cell.",
+        caption: "Location: nucleus. A nucleus is a membrane-bound organelle that contains the cell's chromosomes. Pores in the nuclear membrane allow for the passage of RNA molecules in and out of the nucleus. The cell nucleus contains all of the cell's genome, except for a small amount of mitochondrial DNA.",
         lastFetched: null
       };
     }
@@ -27,17 +27,17 @@ class LocationComponent extends React.Component<any,any> {
       if (pose.x < 15) {
         this.setState({
           location: nucleus,
-          caption: "The knowledge centre of the cell."
+          caption: "The knowledge centre of the cell. A nucleus is a membrane-bound organelle that contains the cell's chromosomes. Pores in the nuclear membrane allow for the passage of RNA molecules in and out of the nucleus. The cell nucleus contains all of the cell's genome, except for a small amount of mitochondrial DNA."
         });
       } else if (pose.x < 100) {
         this.setState({
           location: mitochondrion,
-          caption: `The powerhouse of the cell.`
+          caption: `The powerhouse of the cell. Mitochondria are membrane-bound cell organelles (mitochondrion, singular) that generate most of the chemical energy needed to power the cell's biochemical reactions. Chemical energy produced by the mitochondria is stored in a small molecule called adenosine triphosphate (ATP). Mitochondria contain their own small chromosomes. Generally, mitochondria, and therefore mitochondrial DNA, are inherited only from the mother.`
         });
       } else {
         this.setState({
           location: golgi_body,
-          caption: "The packaging warehouse of the cell."
+          caption: "The packaging warehouse of the cell. A Golgi body, also known as a Golgi apparatus, is a cell organelle that helps process and package proteins and lipid molecules, especially proteins destined to be exported from the cell. Named after its discoverer, Camillo Golgi, the Golgi body appears as a series of stacked membranes."
         });
       }
     }

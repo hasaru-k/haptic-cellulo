@@ -20,7 +20,7 @@ const Location: FunctionComponent<LocationProps> = (props: LocationProps): any =
     return <div>
                 <Figure>
                     <Video src={props.src}></Video>
-                    <Figure.Caption style={{marginTop: "10px"}}>
+                    <Figure.Caption style={{marginTop: "10px", textAlign: "left", color: "#383838", fontSize: "70%", padding: "10px", height: "16rem"}}>
                     {props.caption}
                     </Figure.Caption>
                 </Figure>
