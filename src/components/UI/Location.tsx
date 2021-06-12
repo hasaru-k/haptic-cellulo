@@ -16,7 +16,6 @@ interface LocationProps {
 
 const Location: FunctionComponent<LocationProps> = (props: LocationProps): any => { 
     /* function body */ 
-    console.log(`x=${props.x},y=${props.y}`);
     return <div>
                 <Figure>
                     <Video src={props.src}></Video>
