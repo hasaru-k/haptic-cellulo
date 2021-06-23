@@ -6,21 +6,45 @@ import nucleusGraphic from '../assets/nucleus.mp4';
 import mitochondrionGraphic from '../assets/mitochondrion.mp4';
 import golgiBodyGraphic from '../assets/golgi_body.mp4';
 
-interface Organelle {
-  name: String
-  x: number,
-  y: number,
-  graphic: String,
-  caption: String
+interface OrganelleData {
+  graphic: string,
+  caption: string
 }
 
 // Todo: migrate into JSON
-let nucleus = {name: "nucleus", x: 177, y: 85, graphic: nucleusGraphic, caption: "The knowledge centre of the cell. A nucleus is a membrane-bound organelle that contains the cell's chromosomes. Pores in the nuclear membrane allow for the passage of RNA molecules in and out of the nucleus. The cell nucleus contains all of the cell's genome, except for a small amount of mitochondrial DNA."};
-let mitochondrion = {name: "mitochondrion", x: 136, y: 49, graphic: mitochondrionGraphic, caption: "The powerhouse of the cell. Mitochondria are membrane-bound cell organelles (mitochondrion, singular) that generate most of the chemical energy needed to power the cell's biochemical reactions. Chemical energy produced by the mitochondria is stored in a small molecule called adenosine triphosphate (ATP). Mitochondria contain their own small chromosomes. Generally, mitochondria, and therefore mitochondrial DNA, are inherited only from the mother."};
-let golgiBody = {name: "golgi body", x: 167, y: 150, graphic: golgiBodyGraphic, caption: "The packaging warehouse of the cell. A Golgi body, also known as a Golgi apparatus, is a cell organelle that helps process and package proteins and lipid molecules, especially proteins destined to be exported from the cell. Named after its discoverer, Camillo Golgi, the Golgi body appears as a series of stacked membranes."};
-let organelles = [nucleus, mitochondrion, golgiBody];
+let nucleusData = {graphic: nucleusGraphic, caption: "The knowledge centre of the cell. A nucleus is a membrane-bound organelle that contains the cell's chromosomes. Pores in the nuclear membrane allow for the passage of RNA molecules in and out of the nucleus. The cell nucleus contains all of the cell's genome, except for a small amount of mitochondrial DNA."} as OrganelleData;
+let mitochondrionData = {graphic: mitochondrionGraphic, caption: "The powerhouse of the cell. Mitochondria are membrane-bound cell organelles (mitochondrion, singular) that generate most of the chemical energy needed to power the cell's biochemical reactions. Chemical energy produced by the mitochondria is stored in a small molecule called adenosine triphosphate (ATP). Mitochondria contain their own small chromosomes. Generally, mitochondria, and therefore mitochondrial DNA, are inherited only from the mother."} as OrganelleData;
+let golgiBodyData = {graphic: golgiBodyGraphic, caption: "The packaging warehouse of the cell. A Golgi body, also known as a Golgi apparatus, is a cell organelle that helps process and package proteins and lipid molecules, especially proteins destined to be exported from the cell. Named after its discoverer, Camillo Golgi, the Golgi body appears as a series of stacked membranes."} as OrganelleData;
+let undefinedData = {graphic: "", caption: "Undefined"} as OrganelleData;
 
-class LocationComponent extends React.Component<any,any> {
+interface OrganelleStore {
+  [index: string]: OrganelleData;
+}
+
+let organelles = {
+  "nucleus" : nucleusData,
+  "mitochondrion": mitochondrionData,
+  "golgiBody": golgiBodyData,
+  "undefined": undefinedData
+} as OrganelleStore;
+
+interface LocationComponentState {
+  error: any,
+  isLoaded: boolean,
+  x: number,
+  y: number,
+  theta: number,
+  zone: string,
+  src: string,
+  caption: string,
+  lastFetched: string
+}
+
+interface LocationComponentProps {
+  name: string | null
+}
+
+class LocationComponent extends React.Component<LocationComponentProps, LocationComponentState> {
 
     intervalId: any = 0;
     constructor(props: any) {
@@ -28,37 +52,14 @@ class LocationComponent extends React.Component<any,any> {
       this.state = {
         error: null,
         isLoaded: false,
-        x: "",
-        y: "",
-        theta: "",
-        location: nucleus.graphic,
-        caption: "Location: nucleus. A nucleus is a membrane-bound organelle that contains the cell's chromosomes. Pores in the nuclear membrane allow for the passage of RNA molecules in and out of the nucleus. The cell nucleus contains all of the cell's genome, except for a small amount of mitochondrial DNA.",
-        lastFetched: null
+        x: 0,
+        y: 0,
+        theta: 0,
+        zone: "undefined",
+        src: "",
+        caption: "Location: undefined",
+        lastFetched: ""
       };
-    }
-
-    getClosestOrganelle(pose: any) {
-      // threshold in mm
-      let threshold = 10;
-      let minDist = Number.MAX_SAFE_INTEGER;
-      let closest = {} as Organelle;
-      organelles.forEach(function (organelle: Organelle) {
-        let dist = Math.sqrt( Math.pow((organelle.x - pose.x), 2) + Math.pow((organelle.y - pose.y), 2) );
-        console.log(`dist(pose, ${organelle.name})=${dist}`)
-        if (dist < minDist) {
-          minDist = dist;
-          closest = organelle;
-        }
-      });
-      return closest;
-    }
-
-    updateLocation(pose: any) {
-      let closest = this.getClosestOrganelle(pose);
-      this.setState({
-        location: closest.graphic,
-        caption: closest.caption
-      });
     }
 
   async fetchPose() {
@@ -75,9 +76,11 @@ class LocationComponent extends React.Component<any,any> {
                         x: pose.x,
                         y: pose.y,
                         theta: pose.theta,
-                        lastFetched: date.toLocaleTimeString('en-US')
+                        zone: pose.zone,
+                        lastFetched: date.toLocaleTimeString('en-US'),
+                        src: organelles[pose.zone].graphic,
+                        caption: organelles[pose.zone].caption
                     });
-                    this.updateLocation(pose);
                 } else {
                     console.log("Non-success:" + JSON.stringify(res));
                 }
@@ -100,7 +103,7 @@ class LocationComponent extends React.Component<any,any> {
     }
 
     render() {
-      const { error, isLoaded, x, y, theta, location, caption, lastFetched } = this.state;
+      const { error, isLoaded, x, y, theta, zone, src, caption, lastFetched } = this.state;
       if (error) {
         return <div>Error: {error.message}</div>;
       } else if (!isLoaded) {
@@ -109,13 +112,14 @@ class LocationComponent extends React.Component<any,any> {
         return (
           <div>
             <Location 
-                src={location} 
+                src={src} 
                 caption={String(caption)} 
                 lastFetched={String(lastFetched)}
                 name={String(this.props.name)}
                 x={Number(x)}
                 y={Number(y)}
-                theta={Number(theta)}>
+                theta={Number(theta)}
+                zone={String(zone)}>
             </Location>
           </div>
         );

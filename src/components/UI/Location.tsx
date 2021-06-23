@@ -8,6 +8,7 @@ interface LocationProps {
     x: number,
     y: number,
     theta: number,
+    zone: string,
     src: string,
     caption: string,
     lastFetched: string | null,
@@ -25,7 +26,7 @@ const Location: FunctionComponent<LocationProps> = (props: LocationProps): any =
                 </Figure>
                 <Button variant="dark" style={{fontSize: "1rem", width: "100%"}} disabled>
                     <Spinner animation="grow" variant="light" size="sm" style={{marginRight: "3%"}} />
-                    Location: (x={Math.round(props.x)}, y={Math.round(props.y)}, theta={Math.round(props.theta)})
+                    Location: (x={Math.round(props.x)}, y={Math.round(props.y)}, theta={Math.round(props.theta)}, zone={props.zone})
                 </Button>
                 <Button variant="dark" style={{fontSize: "1rem", width: "100%"}} disabled>Last updated at {props.lastFetched === null ? "" : props.lastFetched}</Button>
             </div>
