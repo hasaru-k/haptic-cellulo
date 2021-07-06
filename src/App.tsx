@@ -39,8 +39,8 @@ class App extends React.Component<Props,State> {
   render() {
     return (
       <div className="App">
-          <p></p>
-          <div className="container" style={{backgroundColor: "rgb(23 23 23)", padding: "30px", borderRadius: "10px"}}>
+          <h2 style={{paddingTop: "30px", color: "#b9b9b9"}}>Haptic Cellulo</h2>
+          <div className="container" style={{padding: "30px", borderRadius: "10px"}}>
             <Tabs defaultActiveKey="explore" style={{marginBottom: "20px", fontSize: "1rem"}}>
                 <Tab eventKey="explore" title="Explore Cell Map">
                   <div className="row">
