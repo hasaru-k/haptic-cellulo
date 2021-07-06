@@ -6,6 +6,7 @@ import nucleusGraphic from '../assets/nucleus.mp4';
 import mitochondrionGraphic from '../assets/mitochondrion.mp4';
 import golgiBodyGraphic from '../assets/golgi_body.mp4';
 import undefinedGraphic from '../assets/cytosol.mp4';
+import Captions from '../assets/captions.json';
 
 interface OrganelleData {
   graphic: string,
@@ -13,10 +14,10 @@ interface OrganelleData {
 }
 
 // Todo: migrate into JSON
-let nucleusData = {graphic: nucleusGraphic, caption: "The knowledge centre of the cell. A nucleus is a membrane-bound organelle that contains the cell's chromosomes. Pores in the nuclear membrane allow for the passage of RNA molecules in and out of the nucleus. The cell nucleus contains all of the cell's genome, except for a small amount of mitochondrial DNA."} as OrganelleData;
-let mitochondrionData = {graphic: mitochondrionGraphic, caption: "The powerhouse of the cell. Mitochondria are membrane-bound cell organelles (mitochondrion, singular) that generate most of the chemical energy needed to power the cell's biochemical reactions. Chemical energy produced by the mitochondria is stored in a small molecule called adenosine triphosphate (ATP). Mitochondria contain their own small chromosomes. Generally, mitochondria, and therefore mitochondrial DNA, are inherited only from the mother."} as OrganelleData;
-let golgiBodyData = {graphic: golgiBodyGraphic, caption: "The packaging warehouse of the cell. A Golgi body, also known as a Golgi apparatus, is a cell organelle that helps process and package proteins and lipid molecules, especially proteins destined to be exported from the cell. Named after its discoverer, Camillo Golgi, the Golgi body appears as a series of stacked membranes."} as OrganelleData;
-let undefinedData = {graphic: undefinedGraphic, caption: "The cytosol is the liquid medium contained within a cell. The main component of cytosol is water. It also contains dissolved ions, small molecules, and proteins. Various organelles and particles are suspended inside the cytosol."} as OrganelleData;
+let nucleusData = {graphic: nucleusGraphic, caption: Captions.nucleus} as OrganelleData;
+let mitochondrionData = {graphic: mitochondrionGraphic, caption: Captions.mitochondrion} as OrganelleData;
+let golgiBodyData = {graphic: golgiBodyGraphic, caption: Captions.golgiBody} as OrganelleData;
+let undefinedData = {graphic: undefinedGraphic, caption: Captions.cytosol} as OrganelleData;
 
 interface OrganelleStore {
   [index: string]: OrganelleData;

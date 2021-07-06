@@ -8,12 +8,11 @@ function Video(props: any) {
                 loop
                 src={props.src}
                 height={"60%"}
-                width={"80%"}
+                width={"100%"}
                 style={{
                     display: "block",
                     boxShadow: "0px 1px 17px 0px #ffffff38",
-                    borderRadius: "5px",
-                    marginLeft: "10%"}}>
+                    borderRadius: "5px"}}>
             </video>
 }
 

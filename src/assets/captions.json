@@ -1,0 +1,6 @@
+{
+    "cytosol": "##### The liquid medium contained within a cell.\n - The main component of cytosol is water\n - It also contains dissolved ions, small molecules, and proteins\n - Various organelles and particles are suspended inside the cytosol",
+    "golgiBody": "The packaging warehouse of the cell.\n - It helps process and package proteins and lipid molecules, especially proteins destined to be exported from the cell\n - Named after its discoverer, Camillo Golgi, the Golgi body appears as a series of stacked membranes",
+    "mitochondrion": "The powerhouse of the cell.\n - Mitochondria are membrane-bound cell organelles (mitochondrion, singular) that generate most of the chemical energy needed to power the cell's biochemical reactions\n - Chemical energy produced by the mitochondria is stored in a small molecule called adenosine triphosphate (ATP)\n - Mitochondria contain their own small chromosomes.\n - Generally, mitochondria, and therefore mitochondrial DNA, are inherited only from the mother",
+    "nucleus": "The knowledge centre of the cell.\n - A nucleus is a membrane-bound organelle that contains the cell's chromosomes\n - Pores in the nuclear membrane allow for the passage of RNA molecules in and out of the nucleus\n - The cell nucleus contains all of the cell's genome, except for a small amount of mitochondrial DNA"
+}
