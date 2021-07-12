@@ -39,16 +39,13 @@ class App extends React.Component<Props,State> {
   render() {
     return (
       <div className="App">
-          <h2 style={{paddingTop: "30px", color: "#b9b9b9"}}>Haptic Cellulo</h2>
-          <div className="container" style={{padding: "30px", borderRadius: "10px"}}>
+          <h2 style={{paddingTop: "30px", color: "#b9b9b9", fontFamily: "helvetica"}}>Haptic Cellulo</h2>
+          <div className="container" style={{padding: "30px", borderRadius: "10px", width: "40%"}}>
             <Tabs defaultActiveKey="explore" style={{marginBottom: "20px", fontSize: "1rem"}}>
                 <Tab eventKey="explore" title="Explore Cell Map">
                   <div className="row">
                       <div className="col">
-                        <RobotDisplay queryRobot={getQuery('left')}></RobotDisplay>
-                      </div>
-                      <div className="col">
-                        <RobotDisplay queryRobot={getQuery('right')}></RobotDisplay>
+                        <RobotDisplay queryRobot={getQuery('name')}></RobotDisplay>
                       </div>
                   </div>
                 </Tab>

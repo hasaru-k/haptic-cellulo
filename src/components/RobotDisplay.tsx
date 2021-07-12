@@ -67,9 +67,6 @@ class RobotDisplay extends React.Component<RobotDisplayProps, RobotDisplayState>
       let name = this.props.queryRobot;
       return (
         <div>
-            <Button variant="dark" style={{fontSize: "1.5rem", width: "100%", marginBottom: "20px"}} disabled>
-              Player {name}
-            </Button>
             <LocationComponent name={name}></LocationComponent> 
         </div>
       );

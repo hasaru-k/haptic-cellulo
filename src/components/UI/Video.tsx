@@ -7,7 +7,7 @@ function Video(props: any) {
                 playsInline
                 loop
                 src={props.src}
-                height={"60%"}
+                height={"50%"}
                 width={"100%"}
                 style={{
                     display: "block",
