@@ -5,29 +5,24 @@ import Location from './UI/Location';
 import nucleusGraphic from '../assets/nucleus.mp4';
 import mitochondrionGraphic from '../assets/mitochondrion.mp4';
 import golgiBodyGraphic from '../assets/golgi_body.mp4';
+import lysosomeGraphic from '../assets/lysosome.mp4';
 import undefinedGraphic from '../assets/cytosol.mp4';
 import Captions from '../assets/captions.json';
 
 interface OrganelleData {
-  graphic: string,
-  caption: string
+  graphic: string
 }
-
-// Todo: migrate into JSON
-let nucleusData = {graphic: nucleusGraphic, caption: Captions.nucleus} as OrganelleData;
-let mitochondrionData = {graphic: mitochondrionGraphic, caption: Captions.mitochondrion} as OrganelleData;
-let golgiBodyData = {graphic: golgiBodyGraphic, caption: Captions.golgiBody} as OrganelleData;
-let undefinedData = {graphic: undefinedGraphic, caption: Captions.cytosol} as OrganelleData;
 
 interface OrganelleStore {
   [index: string]: OrganelleData;
 }
 
 let organelles = {
-  "nucleus" : nucleusData,
-  "mitochondrion": mitochondrionData,
-  "golgiBody": golgiBodyData,
-  "undefined": undefinedData
+  "nucleus" : {graphic: nucleusGraphic},
+  "mitochondrion": {graphic: mitochondrionGraphic},
+  "golgiBody": {graphic: golgiBodyGraphic},
+  "lysosome": {graphic: lysosomeGraphic},
+  "undefined": {graphic: undefinedGraphic}
 } as OrganelleStore;
 
 interface LocationComponentState {
@@ -38,7 +33,6 @@ interface LocationComponentState {
   theta: number,
   zone: string,
   src: string,
-  caption: string,
   lastFetched: string
 }
 
@@ -59,7 +53,6 @@ class LocationComponent extends React.Component<LocationComponentProps, Location
         theta: 0,
         zone: "undefined",
         src: "",
-        caption: "Location: undefined",
         lastFetched: ""
       };
     }
@@ -81,7 +74,6 @@ class LocationComponent extends React.Component<LocationComponentProps, Location
                         zone: pose.zone,
                         lastFetched: date.toLocaleTimeString('en-US'),
                         src: organelles[pose.zone].graphic,
-                        caption: organelles[pose.zone].caption
                     });
                 } else {
                     console.log("Non-success:" + JSON.stringify(res));
@@ -105,7 +97,7 @@ class LocationComponent extends React.Component<LocationComponentProps, Location
     }
 
     render() {
-      const { error, isLoaded, x, y, theta, zone, src, caption, lastFetched } = this.state;
+      const { error, isLoaded, x, y, theta, zone, src, lastFetched } = this.state;
       if (error) {
         return <div>Error: {error.message}</div>;
       } else if (!isLoaded) {
@@ -115,7 +107,6 @@ class LocationComponent extends React.Component<LocationComponentProps, Location
           <div>
             <Location 
                 src={src} 
-                caption={caption} 
                 lastFetched={lastFetched}
                 name={String(this.props.name)}
                 x={x}

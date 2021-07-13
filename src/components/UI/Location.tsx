@@ -6,6 +6,9 @@ import { FunctionComponent } from 'react'; // importing FunctionComponent
 import ReactMarkdown from 'react-markdown'
 import GolgiBody from './GolgiBody';
 import Cytosol from './Cytosol';
+import Nucleus from './Nucleus';
+import Mitochondrion from './Mitochondrion';
+import Lysosome from './Lysosome';
 
 interface LocationProps {
     x: number,
@@ -13,9 +16,26 @@ interface LocationProps {
     theta: number,
     zone: string,
     src: string,
-    caption: any,
     lastFetched: string | null,
     name: string
+}
+
+function getOrganelleCarousel(zone: string) {
+    switch (zone) {
+        case "golgiBody":
+            return <GolgiBody/>;
+        case "nucleus":
+            return <Nucleus/>;
+        case "lysosome":
+            return <Lysosome/>;
+        case "mitochondrion":
+            return <Mitochondrion/>;
+        case "cytosol":
+        case "undefined":
+            return <Cytosol/>;
+        default:
+            throw new Error("Undefined behaviour for zone: " + zone);
+    }
 }
 
 const Location: FunctionComponent<LocationProps> = (props: LocationProps): any => {
@@ -28,7 +48,7 @@ const Location: FunctionComponent<LocationProps> = (props: LocationProps): any =
             {props.name}
         </Button>
         <Button variant="dark mt-2" style={{ fontSize: "1rem", width: "100%", textAlign: "left" }} disabled>
-            {props.zone === "golgiBody" ? <GolgiBody /> : <Cytosol />}
+            {getOrganelleCarousel(props.zone)}
         </Button>
         <Button variant="dark mt-2" style={{ fontSize: "1rem", width: "100%" }} disabled>
             <Spinner animation="grow" variant="light" size="sm" style={{ marginRight: "3%" }} />
