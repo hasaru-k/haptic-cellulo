@@ -11,20 +11,27 @@ interface CytosolProps {
 
 const Cytosol: FunctionComponent<CytosolProps> = (props: CytosolProps): any => {
     /* function body */
-    return <Carousel fade indicators={false}>
-        <Carousel.Item>
-        <h4 style={{width: "60%", marginLeft: "20%", textAlign: "center"}}>The liquid medium contained within a cell.</h4>
-        </Carousel.Item>
-        <Carousel.Item>
-        <h6 style={{width: "60%", marginLeft: "20%", textAlign: "center"}}>The main component of cytosol is water.</h6>
-        </Carousel.Item>
-        <Carousel.Item>
-        <h6 style={{width: "60%", marginLeft: "20%", textAlign: "center"}}>Various organelles and particles are suspended inside the cytosol.</h6>
-        </Carousel.Item>
-        <Carousel.Item>
-        <h6 style={{width: "60%", marginLeft: "20%", textAlign: "center"}}>It also contains dissolved ions, small molecules, and proteins.</h6>
-        </Carousel.Item>
-    </Carousel>
+    return <Carousel indicators={false} touch={false} interval={null}>
+    <Carousel.Item style={{width: "70%", marginLeft: "15%", textAlign: "center"}}>
+        <ReactMarkdown>
+        ## The liquid medium contained within a cell.
+        </ReactMarkdown>
+        <ReactMarkdown>
+        The main component of cytosol is water.
+        </ReactMarkdown>
+        <ReactMarkdown>
+        Suspended within the cytosol are various ***organelles*** - explore these to learn more.
+        </ReactMarkdown>
+    </Carousel.Item>
+    <Carousel.Item style={{width: "70%", marginLeft: "15%", textAlign: "center"}}>
+        <ReactMarkdown>
+        **Did you know?**
+        </ReactMarkdown>
+        <ReactMarkdown>
+        That's not all though! The cytosol also contains dissolved ions, small molecules, and proteins.
+        </ReactMarkdown>
+    </Carousel.Item>
+</Carousel>
 };
 
 export default Cytosol;

@@ -11,23 +11,27 @@ interface MitochondrionProps {
 
 const Mitochondrion: FunctionComponent<MitochondrionProps> = (props: MitochondrionProps): any => {
     /* function body */
-    return <Carousel indicators={false} touch={false}>
-        <Carousel.Item>
-            <h1 style={{width: "60%", marginLeft: "20%", textAlign: "center"}}>
-            The packaging warehouse of the cell.
-            </h1>
-        </Carousel.Item>
-        <Carousel.Item>
-            <h3 style={{width: "60%", marginLeft: "20%", textAlign: "center"}}>
-                It helps process and package proteins and lipid molecules, especially proteins destined to be exported from the cell.
-            </h3>
-        </Carousel.Item>
-        <Carousel.Item>
-            <h3 style={{width: "60%", marginLeft: "20%", textAlign: "center"}}>
-                Named after its discoverer, Camillo Golgi, the Golgi body appears as a series of stacked membranes.
-            </h3>
-        </Carousel.Item>
-    </Carousel>
+    return <Carousel indicators={false} touch={false} interval={null}>
+            <Carousel.Item style={{width: "70%", marginLeft: "15%", textAlign: "center"}}>
+                <ReactMarkdown>
+                ## The powerhouse of the cell.
+                </ReactMarkdown>
+                <ReactMarkdown>
+                Mitochondria generate the **chemical energy** to power the cell's biochemical reactions.
+                </ReactMarkdown>
+                <ReactMarkdown>
+                This energy is stored in a small molecule called ***ATP: adenosine triphosphate***.
+                </ReactMarkdown>
+            </Carousel.Item>
+            <Carousel.Item style={{width: "70%", marginLeft: "15%", textAlign: "center"}}>
+                <ReactMarkdown>
+                **Did you know?**
+                </ReactMarkdown>
+                <ReactMarkdown>
+                Mitochondria contain their own DNA, in the form of small, circular chromosomes. These are only inherited from the mother!
+                </ReactMarkdown>
+            </Carousel.Item>
+        </Carousel>
 };
 
 export default Mitochondrion;

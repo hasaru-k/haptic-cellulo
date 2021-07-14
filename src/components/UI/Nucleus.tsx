@@ -11,18 +11,27 @@ interface CytosolProps {
 
 const Cytosol: FunctionComponent<CytosolProps> = (props: CytosolProps): any => {
     /* function body */
-    return <Carousel fade indicators={false}>
-        <Carousel.Item>
-        <h4 style={{width: "60%", marginLeft: "20%", textAlign: "center"}}>The liquid medium contained within a cell.</h4>
+    return <Carousel indicators={false} touch={false} interval={null}>
+        <Carousel.Item style={{width: "70%", marginLeft: "15%", textAlign: "center"}}>
+            <ReactMarkdown>
+            ## The control centre of the cell.
+            </ReactMarkdown>
+            <ReactMarkdown>
+            The nucleus contains most of the cell's genetic material inside DNA structures known as ***chromosomes***.
+            </ReactMarkdown>
+            <ReactMarkdown>
+            Inside the nucleus, DNA is transcribed into ***messenger RNA*** which leaves the nucleus through
+            small pores.
+            </ReactMarkdown>
         </Carousel.Item>
-        <Carousel.Item>
-        <h6 style={{width: "60%", marginLeft: "20%", textAlign: "center"}}>The main component of cytosol is water.</h6>
-        </Carousel.Item>
-        <Carousel.Item>
-        <h6 style={{width: "60%", marginLeft: "20%", textAlign: "center"}}>Various organelles and particles are suspended inside the cytosol.</h6>
-        </Carousel.Item>
-        <Carousel.Item>
-        <h6 style={{width: "60%", marginLeft: "20%", textAlign: "center"}}>It also contains dissolved ions, small molecules, and proteins.</h6>
+        <Carousel.Item style={{width: "70%", marginLeft: "15%", textAlign: "center"}}>
+            <ReactMarkdown>
+            The messenger RNA is ***translated*** elsewhere into proteins, which have important
+            roles to play - for instance, controlling your hair colour!
+            </ReactMarkdown>
+            <ReactMarkdown>
+            The nucleus is also responsible for reproduction (AKA ***cell division***).
+            </ReactMarkdown>
         </Carousel.Item>
     </Carousel>
 };
