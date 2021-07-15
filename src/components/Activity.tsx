@@ -1,9 +1,10 @@
 import React from 'react';
-import {Form, Badge, Button, ListGroup} from 'react-bootstrap';
+import {Form, Badge, Button, ListGroup, Modal} from 'react-bootstrap';
 import Questions from '../assets/question_sheet.json';
 
 interface ActivityProps {
   robots: Array<string>
+  show: boolean
 }
 
 interface Response {
@@ -26,7 +27,7 @@ class Activity extends React.Component<ActivityProps, ActivityState> {
 
     componentDidMount() {
     }
-  
+
     render() {
       let responses = this.state.responses;
       console.log(Questions);

@@ -32,3 +32,8 @@ a:hover {
 .nav-link:hover {
   border-color: #6f6f6f #6f6f6f #6f6f6f;
 }
+
+.modal-open .container-fluid, .modal-open  .container {
+  -webkit-filter: blur(5px) grayscale(90%);
+  filter: blur(5px) grayscale(90%);
+}
