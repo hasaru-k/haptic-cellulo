@@ -22,7 +22,8 @@ let organelles = {
   "mitochondrion": {graphic: mitochondrionGraphic},
   "golgiBody": {graphic: golgiBodyGraphic},
   "lysosome": {graphic: lysosomeGraphic},
-  "undefined": {graphic: undefinedGraphic}
+  "undefined": {graphic: undefinedGraphic},
+  "cytosol": {graphic: undefinedGraphic}
 } as OrganelleStore;
 
 interface LocationComponentState {

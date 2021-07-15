@@ -11,16 +11,32 @@ interface GolgiBodyProps {
 
 const GolgiBody: FunctionComponent<GolgiBodyProps> = (props: GolgiBodyProps): any => {
     /* function body */
-    return <Carousel indicators={false} touch={false}>
-        <Carousel.Item>
-        <h1 style={{width: "60%", marginLeft: "20%", textAlign: "center"}}>The packaging warehouse of the cell.</h1>
-        </Carousel.Item>
-        <Carousel.Item>
-        <h3 style={{width: "60%", marginLeft: "20%", textAlign: "center"}}>It helps process and package proteins and lipid molecules, especially proteins destined to be exported from the cell.</h3>
-        </Carousel.Item>
-        <Carousel.Item>
-        <h3 style={{width: "60%", marginLeft: "20%", textAlign: "center"}}>Named after its discoverer, Camillo Golgi, the Golgi body appears as a series of stacked membranes.</h3>
-        </Carousel.Item>
+    return <Carousel indicators={false} touch={false} interval={null}>
+    <Carousel.Item style={{width: "70%", marginLeft: "15%", textAlign: "center"}}>
+        <ReactMarkdown>
+        ## The packaging warehouse of the cell.
+        </ReactMarkdown>
+        <ReactMarkdown>
+        **Did you know?**
+        </ReactMarkdown>
+        <ReactMarkdown>
+        The golgi body is named after its discoverer, Camillo Golgi. It appears as a set of stacked membranes!
+        </ReactMarkdown>
+        <ReactMarkdown>
+        **Read ahead** to find out what this mysterious organelle does.
+        </ReactMarkdown>
+    </Carousel.Item>
+    <Carousel.Item style={{width: "70%", marginLeft: "15%", textAlign: "center"}}>
+        <ReactMarkdown>
+        **What does it do?**
+        </ReactMarkdown>
+        <ReactMarkdown>
+        The golgi body helps process and package ***proteins*** and ***lipid*** (fat) molecules.
+        </ReactMarkdown>
+        <ReactMarkdown>
+        In particular, it readies proteins for export, to be jettisoned outside of the cell.
+        </ReactMarkdown>
+    </Carousel.Item>
     </Carousel>
 };
 

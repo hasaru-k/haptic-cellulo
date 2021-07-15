@@ -40,7 +40,7 @@ class App extends React.Component<Props,State> {
     return (
       <div className="App">
           <h2 style={{paddingTop: "30px", color: "#b9b9b9", fontFamily: "helvetica"}}>Haptic Cellulo</h2>
-          <div className="container" style={{padding: "30px", borderRadius: "10px", width: "40%"}}>
+          <div className="container" style={{padding: "20px", borderRadius: "10px", width: "50%"}}>
             <Tabs defaultActiveKey="explore" style={{marginBottom: "20px", fontSize: "1rem"}}>
                 <Tab eventKey="explore" title="Explore Cell Map">
                   <div className="row">

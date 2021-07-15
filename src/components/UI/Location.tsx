@@ -45,9 +45,6 @@ const Location: FunctionComponent<LocationProps> = (props: LocationProps): any =
             <Figure style={{marginBottom: "-3px", marginTop: "-5px"}}>
                 <Video src={props.src}></Video>
             </Figure>
-            <Button variant="dark mt-2" style={{ fontSize: "1.5rem", width: "100%"}} disabled>
-                {props.name}
-            </Button>
             <Button variant="dark mt-2" style={{ fontSize: "1rem", width: "100%", textAlign: "left" }} disabled>
                 {getOrganelleCarousel(props.zone)}
             </Button>

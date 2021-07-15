@@ -1,14 +1,22 @@
 [
     {
-        "Q": "Which organelle contains its own form of DNA which is inherited maternally?",
-        "A": "mitochondria"
+        "Q": "Which organelle contains most of the cell's genetic material, encoding for traits such as hair colour?",
+        "A": "nucleus"
     },
     {
-        "Q": "Which organism packages and processes lipids and proteins?",
+        "Q": "To which organelle would a protein arrive at to be packaged for export from the cell?",
         "A": "golgi_body"
     },
     {
-        "Q": "Which organism consisting of RNA and proteins is the site of protein synthesis (that is, the translation of messenger RNA codons into an amino acid sequence)?",
-        "A": "ribosomes"
+        "Q": "Where is chemical energy or ATP (adenosine triphosphate) produced?",
+        "A": "mitochondrion"
+    },
+    {
+        "Q": "Which organelle is capable of destroying the cell?",
+        "A": "lysosome"
+    },
+    {
+        "Q": "What is the space in which all organelles reside?",
+        "A": "cytosol"
     }
 ]
