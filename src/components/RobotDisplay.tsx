@@ -67,7 +67,6 @@ class RobotDisplay extends React.Component<RobotDisplayProps, RobotDisplayState>
       let name = this.props.queryRobot;
       return (
         <div>
-            <LocationComponent name={name}></LocationComponent> 
         </div>
       );
     }
@@ -81,7 +80,6 @@ class RobotDisplay extends React.Component<RobotDisplayProps, RobotDisplayState>
       } else {
         return (
           <div>
-              <LocationComponent name={selectedRobot}></LocationComponent> 
               <Form.Group>
                   <Form.Label>Tracking player:</Form.Label>
                   <Form.Control as="select"

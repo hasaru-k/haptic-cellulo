@@ -4,123 +4,122 @@ import './App.css';
 import RobotDisplay from './components/RobotDisplay';
 import Activity from './components/Activity';
 import {Tab, Tabs, Modal, Button} from 'react-bootstrap';
+import MainDisplay from './MainDisplay';
+
+export interface GamePlayer {
+  name: string
+  zone: string
+  x: number
+  y: number
+  theta: number
+  lastFetched: string
+}
 
 interface State {
-  mode: Mode,
-  key: string
-  showModal: boolean
-  startedQuiz: boolean
+  player: GamePlayer
+  partner: GamePlayer
 }
 
 interface Props {
 }
 
-enum Mode {
-  Test,
-  Explore,
-}
-
 function getQuery(query : string) {
-  return new URLSearchParams(window.location.search).get(query);
+  let result = new URLSearchParams(window.location.search).get(query);
+  if (result === null) {
+    throw new Error(`Query parameter ${query} not provided`);
+  }
+  return result;
 }
 
 class App extends React.Component<Props,State> {
 
+  intervalId: any = 0;
   constructor(props: Props) {
     super(props);
+    let player = {
+      name: getQuery('player'),
+      zone: "undefined",
+      x: 0,
+      y: 0,
+      theta: 0,
+      lastFetched: "Not fetched"
+    } as GamePlayer;
+    let partner = {
+      name: getQuery('partner'),
+      zone: "undefined",
+      x: 0,
+      y: 0,
+      theta: 0,
+      lastFetched: "Not fetched"
+    } as GamePlayer;
     this.state = {
-      mode: Mode.Explore,
-      key: "explore",
-      showModal: false,
-      startedQuiz: false
+      player: player,
+      partner: partner
     };
   }
 
-  changeMode(mode: Mode) {
-    this.setState({
-      mode: mode
+  fetchGamePlayer = (name: string) => {
+    return fetch(`https://cellulo-live.herokuapp.com/pose?name=${name}`)
+    .then(res => res.json())
+    .then(
+    (res) => {
+        if (res.type === 'success') {
+            let pose = res.content;
+            var date = new Date();
+            let result = {
+              name: name,
+              zone: pose.zone,
+              x: pose.x,
+              y: pose.y,
+              theta: pose.theta,
+              lastFetched: date.toLocaleTimeString('en-US'),
+            } as GamePlayer;
+            return result;
+        } else {
+            console.log("Non-success:" + JSON.stringify(res));
+        }
+    },
+    // Note: it's important to handle errors here
+    // instead of a catch() block so that we don't swallow
+    // exceptions from actual bugs in components.
+    (error) => { throw new Error(error) });
+  }
+
+  fetchPose = () => {
+    console.log(this.state);
+    let playerName = this.state.player.name;
+    this.fetchGamePlayer(playerName)
+    .then((gamePlayer: GamePlayer | undefined) => {
+      if (gamePlayer !== undefined) {
+        this.setState({
+          player: gamePlayer
+        });
+      }
+    });
+    let partnerName = this.state.partner.name;
+    this.fetchGamePlayer(partnerName)
+    .then((gamePlayer: GamePlayer | undefined) => {
+      if (gamePlayer !== undefined) {
+        this.setState({
+          partner: gamePlayer
+        });
+      }
     });
   }
 
-  setKey(key: string | null) {
-    let desiredKey = key;
-    let showModal = key === "quiz" ? true : false;
-    this.setState({
-      key: desiredKey === null ? "explore" : desiredKey,
-      showModal: showModal
-    });
+  componentDidMount() {
+      this.intervalId = setInterval(this.fetchPose.bind(this), 500);
+      this.fetchPose();
   }
 
-  startQuiz = () => {
-    this.setState({
-      showModal: false,
-      startedQuiz: true
-    });
-  }
-
-  keepExploring = () => {
-    this.setState({
-      key: "explore",
-      showModal: false
-    });
-  }
 
   render() {
-    let key = this.state.key;
-    let showModal = this.state.showModal;
-    let startedQuiz = this.state.startedQuiz;
-    console.log("ActiveKey:");
-    console.log(key);
+    console.log("This state");
+    console.log(this.state);
+    let {player, partner} = this.state;
     return (
-      <div className="App">
-          <h2 style={{paddingTop: "30px", color: "#b9b9b9", fontFamily: "helvetica"}}>Haptic Cellulo</h2>
-          <div className="container" style={{padding: "20px", borderRadius: "10px", width: "50%"}}>
-            <Tabs                 
-            activeKey={key}  
-            onSelect={(k) => this.setKey(k)}
-            style={{marginBottom: "20px", fontSize: "1rem"}}>
-                <Tab eventKey="explore" title="Explore Cell Map" disabled={startedQuiz ? true : false}>
-                  <div className="row">
-                      <div className="col">
-                        <RobotDisplay queryRobot={getQuery('name')}></RobotDisplay>
-                      </div>
-                  </div>
-                </Tab>
-                <Tab eventKey="quiz" 
-                  title="Start Quiz"
-                  disabled={startedQuiz ? true : false}
-                  //onSelect={this.setShowModal}
-                  >
-                  <Activity robots={[]} show={true}></Activity>
-                </Tab>
-              </Tabs>
-              <Modal
-                    // onHide={}
-                    show={showModal}
-                    backdrop="static"
-                    keyboard={false}
-                  >
-                  <Modal.Header closeButton>
-                    <Modal.Title>Quiz</Modal.Title>
-                  </Modal.Header>
-                  <Modal.Body>
-                    Are you ready to start the quiz? Once you begin, you cannot return
-                    to the learning activity.
-                  </Modal.Body>
-                  <Modal.Footer>
-                    <Button variant="secondary" onClick={this.keepExploring}>
-                      Keep exploring
-                    </Button>
-                    <Button variant="primary" onClick={this.startQuiz}>Yes, start the quiz</Button>
-                  </Modal.Footer>
-                </Modal>
-          </div>
-      </div>
+      <MainDisplay player={player} partner={partner}></MainDisplay>
     );
-  }
-
-  renderContent() {
-    return  
   }
 }
 
