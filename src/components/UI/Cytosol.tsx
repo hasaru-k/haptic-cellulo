@@ -20,7 +20,7 @@ const Cytosol: FunctionComponent<CytosolProps> = (props: CytosolProps): any => {
         The main component of cytosol is water.
         </ReactMarkdown>
         <ReactMarkdown>
-        Suspended within the cytosol are various ***organelles*** - explore these to learn more.
+        Suspended within the cytosol are various ***organelles*** - move your robot to these to learn more.
         </ReactMarkdown>
     </Carousel.Item>
     <Carousel.Item style={{width: "70%", marginLeft: "15%", textAlign: "center"}}>
