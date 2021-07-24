@@ -40,21 +40,24 @@ function getOrganelleCarousel(zone: string) {
 
 const Location: FunctionComponent<LocationProps> = (props: LocationProps): any => {
     /* function body */
-    return <div className="row">
-        <div className="col-lg">
-            <Figure style={{marginBottom: "-3px", marginTop: "-5px"}}>
-                <Video src={props.src}></Video>
-            </Figure>
-            <Button variant="dark mt-2" style={{ fontSize: "1rem", width: "100%", textAlign: "left" }} disabled>
-                {getOrganelleCarousel(props.zone)}
-            </Button>
-            <Button variant="dark mt-2" style={{ fontSize: "1rem", width: "100%" }} disabled>
-                <Spinner animation="grow" variant="light" size="sm" style={{ marginRight: "3%" }} />
-                Location: (x={Math.round(props.x)}, y={Math.round(props.y)}, theta={Math.round(props.theta)}, zone={props.zone})
-            </Button>
-            <Button variant="dark mt-2" style={{ fontSize: "1rem", width: "100%" }} disabled>Last updated at {props.lastFetched === null ? "" : props.lastFetched}</Button>
-        </div>
-    </div>
+    /*
+    <Button variant="dark mt-2" style={{ fontSize: "1rem", width: "100%" }} disabled>
+        <Spinner animation="grow" variant="light" size="sm" style={{ marginRight: "3%" }} />
+        Location: (x={Math.round(props.x)}, y={Math.round(props.y)}, theta={Math.round(props.theta)}, zone={props.zone})
+    </Button>
+    */
+    return  <div style={{paddingBottom: "10px"}}>
+                <Figure style={{marginBottom: "-3px", marginTop: "-5px"}}>
+                    <Video src={props.src}></Video>
+                </Figure>
+                <Button variant="dark mt-2" style={{fontSize: "0.7em", width: "100%", textAlign: "left"}} disabled>
+                    {getOrganelleCarousel(props.zone)}
+                </Button>
+                <Button variant="dark mt-2" style={{ fontSize: "1rem", width: "100%" }} disabled>
+                    <Spinner animation="grow" variant="light" size="sm" style={{ marginRight: "3%" }} />
+                    Last updated at {props.lastFetched === null ? "" : props.lastFetched}
+                </Button>
+            </div>
 };
 
 export default Location;

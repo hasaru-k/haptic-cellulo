@@ -23,9 +23,9 @@ interface State {
 interface Props {
 }
 
-function getQuery(query : string) {
+function getQuery(query : string, required: boolean = true) {
   let result = new URLSearchParams(window.location.search).get(query);
-  if (result === null) {
+  if (required && result === null) {
     throw new Error(`Query parameter ${query} not provided`);
   }
   return result;
@@ -38,7 +38,7 @@ class App extends React.Component<Props,State> {
     super(props);
     let player = {
       name: getQuery('player'),
-      zone: "undefined",
+      zone: "?",
       x: 0,
       y: 0,
       theta: 0,
@@ -46,7 +46,7 @@ class App extends React.Component<Props,State> {
     } as GamePlayer;
     let partner = {
       name: getQuery('partner'),
-      zone: "undefined",
+      zone: "?",
       x: 0,
       y: 0,
       theta: 0,
@@ -112,9 +112,7 @@ class App extends React.Component<Props,State> {
       this.fetchPose();
   }
 
-
   render() {
-    console.log("This state");
     console.log(this.state);
     let {player, partner} = this.state;
     return (

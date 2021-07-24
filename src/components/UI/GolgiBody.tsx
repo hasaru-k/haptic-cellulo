@@ -17,7 +17,7 @@ const GolgiBody: FunctionComponent<GolgiBodyProps> = (props: GolgiBodyProps): an
         ## The packaging warehouse of the cell.
         </ReactMarkdown>
         <ReactMarkdown>
-        **Did you know?**
+        #### Did you know?
         </ReactMarkdown>
         <ReactMarkdown>
         The golgi body is named after its discoverer, Camillo Golgi. It appears as a set of stacked membranes!

@@ -1,11 +1,11 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import RobotDisplay from './components/RobotDisplay';
 import Activity from './components/Activity';
-import {Tab, Tabs, Modal, Button} from 'react-bootstrap';
+import {Tab, Tabs, Modal, Button, Form} from 'react-bootstrap';
 import { GamePlayer } from './App';
 import LocationComponent from './components/LocationComponent';
+import Checklist from './components/UI/Checklist';
 
 interface MainDisplayState {
   mode: Mode,
@@ -22,14 +22,6 @@ interface MainDisplayProps {
 enum Mode {
   Test,
   Explore,
-}
-
-function getQuery(query : string) {
-  let result = new URLSearchParams(window.location.search).get(query);
-  if (result === null) {
-    throw new Error(`Query parameter ${query} not provided`);
-  }
-  return result;
 }
 
 class MainDisplay extends React.Component<MainDisplayProps, MainDisplayState> {
@@ -81,56 +73,57 @@ class MainDisplay extends React.Component<MainDisplayProps, MainDisplayState> {
     console.log(key);
     return (
       <div className="App">
-          <h2 style={{paddingTop: "30px", color: "#b9b9b9", fontFamily: "helvetica"}}>
-            Haptic Cellulo
-          </h2>
-          <div className="container" style={{padding: "20px", borderRadius: "10px", width: "50%"}}>
-            <Tabs activeKey={key}  
-            onSelect={(k) => this.setKey(k)}
-            style={{marginBottom: "20px", fontSize: "1rem"}}>
-                <Tab eventKey="explore" 
-                  title="Explore Cell Map" 
-                  disabled={startedQuiz ? true : false}>
-                  <div className="row">
-                    <div className="col">
-                      <LocationComponent player={this.props.player} partner={this.props.partner}/>
-                    </div>
-                  </div>
-                </Tab>
-                <Tab 
-                eventKey="quiz" 
-                  title="Start Quiz"
-                  disabled={startedQuiz ? true : false}
-                  >
-                  <Activity player={this.props.player} partner={this.props.partner}></Activity>
-                </Tab>
-              </Tabs>
-              <Modal 
-                show={showModal}
-                backdrop="static"
-                keyboard={false}>
-              <Modal.Header 
-                closeButton>
-                <Modal.Title>Quiz</Modal.Title>
-              </Modal.Header>
-              <Modal.Body>
-                Are you ready to start the quiz? Once you begin, you cannot return
-                to the learning activity.
-              </Modal.Body>
-              <Modal.Footer>
-                <Button 
-                  variant="secondary" 
-                  onClick={this.keepExploring}>
-                  Keep exploring
-                </Button>
-                <Button 
-                  variant="primary" 
-                  onClick={this.startQuiz}>
-                    Yes, start the quiz
-                </Button>
-              </Modal.Footer>
-            </Modal>
-          </div>
+              <h2 style={{paddingTop: "15px", color: "#b9b9b9", fontFamily: "helvetica"}}>
+              Haptic Cellulo
+              </h2>
+              <Tabs activeKey={key}  
+              onSelect={(k) => this.setKey(k)}
+              style={{marginTop: "-20px", marginBottom: "30px", fontSize: "1rem", width: "65%"}}>
+                  <Tab eventKey="explore" 
+                    title="Explore Cell Map" 
+                    disabled={startedQuiz ? true : false}>
+                        <div className="gridContainer" style={{borderRadius: "10px", margin: "0%"}}>
+                          <div className="guideBox">
+                            <Checklist/>
+                          </div>
+                          <div className="mainApp">
+                            <LocationComponent player={this.props.player} partner={this.props.partner}/>
+                          </div>
+                        </div>
+                  </Tab>
+                  <Tab 
+                  eventKey="quiz" 
+                    title="Start Quiz"
+                    disabled={startedQuiz ? true : false}
+                    >
+                    <Activity player={this.props.player} partner={this.props.partner}></Activity>
+                  </Tab>
+                </Tabs>
+                <Modal
+                  show={showModal}
+                  backdrop="static"
+                  keyboard={false}>
+                <Modal.Header 
+                  closeButton>
+                  <Modal.Title>Quiz</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                  Are you ready to start the quiz? Once you begin, you cannot return
+                  to the learning activity.
+                </Modal.Body>
+                <Modal.Footer>
+                  <Button 
+                    variant="secondary" 
+                    onClick={this.keepExploring}>
+                    Keep exploring
+                  </Button>
+                  <Button 
+                    variant="primary" 
+                    onClick={this.startQuiz}>
+                      Yes, start the quiz
+                  </Button>
+                </Modal.Footer>
+              </Modal>
       </div>
     );
   }

@@ -17,7 +17,7 @@ const Cytosol: FunctionComponent<CytosolProps> = (props: CytosolProps): any => {
         ## The liquid medium contained within a cell.
         </ReactMarkdown>
         <ReactMarkdown>
-        The main component of cytosol is water.
+        The main component of cytosol is **water**.
         </ReactMarkdown>
         <ReactMarkdown>
         Suspended within the cytosol are various ***organelles*** - move your robot to these to learn more.
@@ -25,10 +25,10 @@ const Cytosol: FunctionComponent<CytosolProps> = (props: CytosolProps): any => {
     </Carousel.Item>
     <Carousel.Item style={{width: "70%", marginLeft: "15%", textAlign: "center"}}>
         <ReactMarkdown>
-        **Did you know?**
+        #### Did you know?
         </ReactMarkdown>
         <ReactMarkdown>
-        That's not all though! The cytosol also contains dissolved ions, small molecules, and proteins.
+        That's not all! The cytosol also contains **dissolved ions**, **small molecules**, and **proteins**.
         </ReactMarkdown>
     </Carousel.Item>
 </Carousel>

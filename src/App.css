@@ -7,6 +7,7 @@
   flex-direction: column;
   align-items: center;
 }
+
 .App-link {
   color: #0000006b;
 }
@@ -51,3 +52,18 @@ a:hover {
 		box-shadow: 0 0 0 0 rgba(213, 208, 208, 0);
 	}
 }
+
+.gridContainer {
+  display: grid; 
+  grid-template-columns: 0.4fr 1fr 0.2fr 3.2fr 0.4fr; 
+  grid-template-rows: 0.4fr 2.9fr 1.4fr; 
+  gap: 0px 0px; 
+  grid-template-areas: 
+    ". . . mainApp ."
+    ". guideBox . mainApp ."
+    ". . . mainApp ."; 
+  padding-left: 10%;
+  padding-right: 10%;
+}
+.guideBox { grid-area: guideBox; }
+.mainApp { grid-area: mainApp; }

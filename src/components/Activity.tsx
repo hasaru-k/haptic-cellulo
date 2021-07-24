@@ -13,8 +13,15 @@ interface Answer {
   zone: string
 }
 
+enum SendingState {
+  UNSENT,
+  IN_FLIGHT,
+  SENT
+}
+
 interface ActivityState {
-  answers: Map<number, Answer>
+  answers: Map<number, Answer>,
+  sendingState: SendingState
 }
 
 class Activity extends React.Component<ActivityProps, ActivityState> {
@@ -27,11 +34,33 @@ class Activity extends React.Component<ActivityProps, ActivityState> {
         answers.set(i, response);
       })
       this.state = {
-        answers: answers
+        answers: answers,
+        sendingState: SendingState.UNSENT
       };
     }
-
-    componentDidMount() {
+    
+    submitResults = (player: string, partner: string, answers: Array<string>) => {
+      this.setState({
+        sendingState: SendingState.IN_FLIGHT
+      });
+      const requestOptions = {
+        method: 'POST'
+      };
+      fetch(
+        `https://cellulo-live.herokuapp.com/results/?player=${player}&partner=${partner}&answers=${answers.join(',')}`,
+        requestOptions
+        )
+      .then(res => res.json())
+      .then(
+      (res) => {
+          console.log(res);
+      },
+      (error) => { throw new Error(error) })
+      .then((res) => {
+        this.setState({
+          sendingState: SendingState.SENT
+        });
+      });
     }
 
     setChecked = (i: number, target: HTMLInputElement) => {
@@ -51,15 +80,20 @@ class Activity extends React.Component<ActivityProps, ActivityState> {
 
     render() {
       let answers = this.state.answers;
+      let sendingState = this.state.sendingState;
       let answerList = Array.from(answers.values()).map(val => val.zone);
       let gamePlayers = [this.props.player, this.props.partner];
       let inAccordance = this.props.player.zone === this.props.partner.zone;
+      let allAnswered = answerList.every((answer) => answer !== "?");
       console.log(Questions);
-      return  <div>
-                <Button variant="dark" style={{fontSize: "1.4rem", width: "100%", marginBottom: "20px"}} disabled>
-                  For each question, place your robot to the organelle on the map
-                    that you consider to be the correct answer.
-                </Button>            
+      return  <div style={{paddingLeft: "20%", paddingRight: "20%", paddingBottom: "20px"}}>
+                <Button variant="dark" style={{fontSize: "1.4rem", width: "100%", marginBottom: "5px"}} disabled>
+                  For each question, move your robot to the organelle on the map that you think
+                  is the correct answer.
+                </Button>    
+                <Button variant="dark" style={{fontSize: "1.2rem", width: "100%", marginBottom: "10px"}} disabled>
+                  Tip: Stay in sync with your partner
+                </Button>                    
                 <div></div>    
                 {
                   Questions.map((question, i) => 
@@ -105,9 +139,17 @@ class Activity extends React.Component<ActivityProps, ActivityState> {
                 </Button>
                 <Button
                   style={{marginTop: "20px", width: "50%"}}
+                  disabled={!allAnswered || sendingState !== SendingState.UNSENT}
+                  onClick={(e) => this.submitResults(this.props.player.name, this.props.partner.name, answerList)}
                   variant="success">
-                    Submit
-                </Button>   
+                    { !allAnswered ?
+                      "Lock in an answer for each question." :
+                      sendingState === SendingState.UNSENT ?
+                      "Submit" :
+                      sendingState === SendingState.IN_FLIGHT ?
+                      "Submitting..." :
+                      "Submitted"}
+                </Button>
               </div>
     }
   }

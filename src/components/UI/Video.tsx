@@ -9,10 +9,7 @@ function Video(props: any) {
                 src={props.src}
                 height={"100%"}
                 width={"100%"}
-                style={{
-                    display: "block",
-                    boxShadow: "0px 1px 17px 0px #ffffff38",
-                    borderRadius: "5px"}}>
+                style={{ boxShadow: "0px 1px 17px 0px #ffffff38", borderRadius: "5px"}}>
             </video>
 }
 

@@ -23,7 +23,7 @@ let organelles = {
   "mitochondrion": {graphic: mitochondrionGraphic},
   "golgiBody": {graphic: golgiBodyGraphic},
   "lysosome": {graphic: lysosomeGraphic},
-  "undefined": {graphic: undefinedGraphic},
+  "?": {graphic: undefinedGraphic},
   "cytosol": {graphic: undefinedGraphic}
 } as OrganelleStore;
 
@@ -45,13 +45,13 @@ class LocationComponent extends React.Component<LocationComponentProps, Location
     render() {
       return <div>
         <Location 
-            src={organelles[this.props.player.zone].graphic} 
-            lastFetched={this.props.player.lastFetched}
-            name={this.props.player.name}
-            x={this.props.player.x}
-            y={this.props.player.y}
-            theta={this.props.player.theta}
-            zone={this.props.player.zone === "undefined" ? "cytosol" : this.props.player.zone}>
+          src={organelles[this.props.player.zone].graphic} 
+          lastFetched={this.props.player.lastFetched}
+          name={this.props.player.name}
+          x={this.props.player.x}
+          y={this.props.player.y}
+          theta={this.props.player.theta}
+          zone={this.props.player.zone === "?" ? "cytosol" : this.props.player.zone}>
         </Location>
       </div>;
     }
