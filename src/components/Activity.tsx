@@ -101,13 +101,26 @@ class Activity extends React.Component<ActivityProps, ActivityState> {
                       <Button variant="dark mt-2" style={{ fontSize: "1.2rem", width: "100%", textAlign: "left", marginBottom: "15px", marginTop: "15px"}} disabled>
                       {i+1}. {question.Q}
                       </Button>
-                        <ToggleButtonGroup type="checkbox" 
+                        <ToggleButtonGroup 
+                          type="checkbox" 
                           style={{alignItems: "center",  
                                   animation: answers.get(i)?.isChecked ? "" : "pulse 1s infinite",
                                   width: "80%"}}>
                           {
+                            sendingState === SendingState.SENT ?
+                            <ToggleButton 
+                              disabled={sendingState === SendingState.SENT}
+                              value={Questions.length} 
+                              style={{pointerEvents: "none", marginRight: "2px"}}
+                              variant={answers.get(i)?.zone === Questions[i].A ? "success" : "danger"}>
+                            { answers.get(i)?.zone === Questions[i].A ? "Correct" : `Correct answer: ${Questions[i].A}`}
+                            </ToggleButton> : null
+                          }
+                          {
                             gamePlayers.map((player: GamePlayer, j) =>
-                            <ToggleButton value={Questions.length + j} 
+                            <ToggleButton 
+                              disabled={sendingState === SendingState.SENT}
+                              value={Questions.length + 1 + j} 
                               style={{pointerEvents: "none", marginRight: "2px"}}
                               variant={answers.get(i)?.isChecked ? "primary" : inAccordance ? "info" : "light"}>
                               {
@@ -118,6 +131,7 @@ class Activity extends React.Component<ActivityProps, ActivityState> {
                             </ToggleButton>)
                           }
                           <ToggleButton
+                            disabled={sendingState === SendingState.SENT}
                             id="toggle-check"
                             checked={answers.get(i)?.isChecked}
                             variant={answers.get(i)?.isChecked ? "primary" : inAccordance ? "info" : "danger"}
