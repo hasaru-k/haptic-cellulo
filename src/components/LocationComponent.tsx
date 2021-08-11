@@ -1,5 +1,4 @@
 import React from 'react';
-import {Alert, Spinner, Badge} from 'react-bootstrap';
 import Span from 'react-bootstrap';
 import Location from './UI/Location';
 import nucleusGraphic from '../assets/nucleus.mp4';
@@ -41,10 +40,11 @@ class LocationComponent extends React.Component<LocationComponentProps, Location
       super(props);
       this.state = {};
     }
-
+    
     render() {
       return <div>
-        <Location 
+        
+        <Location
           src={organelles[this.props.player.zone].graphic} 
           lastFetched={this.props.player.lastFetched}
           name={this.props.player.name}

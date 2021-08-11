@@ -2,6 +2,8 @@ import React from 'react';
 import {Form, Badge, Button, ListGroup, ToggleButton, ToggleButtonGroup} from 'react-bootstrap';
 import Questions from '../assets/question_sheet.json';
 import { GamePlayer } from '../App';
+import {Popover, OverlayTrigger} from 'react-bootstrap';
+
 
 interface ActivityProps {
   player: GamePlayer
@@ -78,6 +80,15 @@ class Activity extends React.Component<ActivityProps, ActivityState> {
       target.blur();
     }
 
+    renderTooltip = (props: any) => (
+      <Popover body {...props}>
+          <div style={{padding: "10px", width: "10rem"}}>
+            To lock in an answer, you and your partner
+            must select the same organelle using your robots.
+          </div>
+      </Popover>
+    );
+
     render() {
       let answers = this.state.answers;
       let sendingState = this.state.sendingState;
@@ -88,12 +99,16 @@ class Activity extends React.Component<ActivityProps, ActivityState> {
       console.log(Questions);
       return  <div style={{paddingLeft: "20%", paddingRight: "20%", paddingBottom: "20px"}}>
                 <Button variant="dark" style={{fontSize: "1.4rem", width: "100%", marginBottom: "5px"}} disabled>
+                  <OverlayTrigger
+                  placement="left"
+                  trigger="hover"
+                  delay={{ show: 250, hide: 400 }}
+                  overlay={this.renderTooltip}>
+                      <Button variant="dark" style={{"fontSize": "0.9em", "marginRight": "10px"}}>ⓘ</Button>
+                  </OverlayTrigger>
                   For each question, move your robot to the organelle on the map that you think
                   is the correct answer.
-                </Button>    
-                <Button variant="dark" style={{fontSize: "1.2rem", width: "100%", marginBottom: "10px"}} disabled>
-                  Tip: Stay in sync with your partner
-                </Button>                    
+                </Button>           
                 <div></div>    
                 {
                   Questions.map((question, i) => 

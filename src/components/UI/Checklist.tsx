@@ -1,5 +1,7 @@
 import React from 'react';
-import { Figure, Spinner, Badge, Alert, Button } from 'react-bootstrap';
+import { Figure, Spinner, Badge, Alert, Button, Tooltip, Popover, OverlayTrigger } from 'react-bootstrap';
+import Header from 'react-bootstrap/Popover';
+import Body from 'react-bootstrap/Popover';
 import pastel2 from '../assets/pastel2.png';
 import Video from './Video';
 import Form from 'react-bootstrap/Form'
@@ -43,27 +45,43 @@ class Checklist extends React.Component<ChecklistProps, ChecklistState> {
         });
     }
 
+    renderTooltip = (props: any) => (
+        <Popover body {...props}>
+            <div style={{padding: "10px", width: "10rem"}}>
+                A checklist of points you should explore together
+                before starting the quiz.
+            </div>
+        </Popover>
+    );
+
     /* function body */
     render() {
         let isChecked = this.state.isChecked;
         return <Form style={{fontSize: "1rem", color: "#b9b9b9", padding: "1em", backgroundColor: "#343a40",
-        borderRadius: "10px", fontFamily: "helvetica"}}>
-        <h4>
-        Tasks
-        </h4>
-        {
-            points.map((point: string, i: number) => 
-                <div key={i} className="mb-3">
-                    <Form.Check type={'checkbox'} label={point} onChange={(e) => this.setChecked(i, e.currentTarget)} />
-                </div>
-            )
-        }
-        {
-            Array.from(isChecked.values()).every(val => val) ?
-            <Button variant="success" style={{pointerEvents: "none"}}>Great! You can start the quiz.</Button> :
-            null
-        }
-      </Form>
+            borderRadius: "10px", fontFamily: "helvetica"}}>
+            <OverlayTrigger
+                placement="left"
+                trigger="hover"
+                delay={{ show: 250, hide: 400 }}
+                overlay={this.renderTooltip}>
+            <Button variant="dark" style={{"fontSize": "0.9em", "display": "block"}}>ⓘ</Button>
+            </OverlayTrigger>
+            <h4 style={{"display": "block"}}>
+            Tasks
+            </h4>
+            {
+                points.map((point: string, i: number) => 
+                    <div key={i} className="mb-3">
+                        <Form.Check type={'checkbox'} label={point} onChange={(e) => this.setChecked(i, e.currentTarget)} />
+                    </div>
+                )
+            }
+            {
+                Array.from(isChecked.values()).every(val => val) ?
+                <Button variant="success" style={{pointerEvents: "none"}}>Great! You can start the quiz.</Button> :
+                null
+            }
+        </Form>
     }
 }
 
