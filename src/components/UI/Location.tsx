@@ -50,26 +50,19 @@ const renderTooltip = (props: any) => (
 
 
 const Location: FunctionComponent<LocationProps> = (props: LocationProps): any => {
-    /* function body */
-    /*
-    <Button variant="dark mt-2" style={{ fontSize: "1rem", width: "100%" }} disabled>
-        <Spinner animation="grow" variant="light" size="sm" style={{ marginRight: "3%" }} />
-        Location: (x={Math.round(props.x)}, y={Math.round(props.y)}, theta={Math.round(props.theta)}, zone={props.zone})
-    </Button>
-    */
     return  <div style={{paddingBottom: "10px"}}>
                 <Figure style={{marginBottom: "-3px", marginTop: "-5px"}}>
                     <Video src={props.src}></Video>
                 </Figure>
                 <Button variant="dark mt-2" style={{fontSize: "0.7em", width: "100%", textAlign: "left"}} disabled>
-                {
-                    <OverlayTrigger
-                    placement="left"
-                    trigger="hover"
-                    delay={{ show: 250, hide: 400 }}
-                    overlay={renderTooltip}>
-                        <Button variant="dark" style={{"fontSize": "0.9em", "display": "block"}}>ⓘ</Button>
-                    </OverlayTrigger>
+                    {
+                        <OverlayTrigger
+                        placement="left"
+                        trigger="hover"
+                        delay={{ show: 250, hide: 400 }}
+                        overlay={renderTooltip}>
+                            <Button variant="dark" style={{"fontSize": "0.9em", "display": "block"}}>ⓘ</Button>
+                        </OverlayTrigger>
                     }
                     {getOrganelleCarousel(props.zone)}
                 </Button>

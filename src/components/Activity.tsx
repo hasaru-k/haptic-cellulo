@@ -163,9 +163,12 @@ class Activity extends React.Component<ActivityProps, ActivityState> {
                     </div>
                   )
                 }
-                <Button variant="dark" style={{fontSize: "1rem", width: "100%", marginTop: "20px"}} disabled>
-                Your answers: [{answerList.join(", ")}]
-                </Button>
+                {
+                  sendingState === SendingState.SENT ?
+                  <Button variant="dark" style={{fontSize: "1rem", width: "100%", marginTop: "20px"}} disabled>
+                  Thank you for completing the HapticCellulo learning activity. Your participation is highly appreciated!
+                  </Button> : null
+                }
                 <Button
                   style={{marginTop: "20px", width: "50%"}}
                   disabled={!allAnswered || sendingState !== SendingState.UNSENT}
