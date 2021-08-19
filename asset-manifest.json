@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/haptic-cellulo/static/css/main.f4f0fdaf.chunk.css",
-    "main.js": "/haptic-cellulo/static/js/main.dd2f1990.chunk.js",
-    "main.js.map": "/haptic-cellulo/static/js/main.dd2f1990.chunk.js.map",
+    "main.css": "/haptic-cellulo/static/css/main.ddd9547e.chunk.css",
+    "main.js": "/haptic-cellulo/static/js/main.b5246651.chunk.js",
+    "main.js.map": "/haptic-cellulo/static/js/main.b5246651.chunk.js.map",
     "runtime-main.js": "/haptic-cellulo/static/js/runtime-main.4971f2d4.js",
     "runtime-main.js.map": "/haptic-cellulo/static/js/runtime-main.4971f2d4.js.map",
     "static/css/2.4c97ca4f.chunk.css": "/haptic-cellulo/static/css/2.4c97ca4f.chunk.css",
-    "static/js/2.b8c6ede4.chunk.js": "/haptic-cellulo/static/js/2.b8c6ede4.chunk.js",
-    "static/js/2.b8c6ede4.chunk.js.map": "/haptic-cellulo/static/js/2.b8c6ede4.chunk.js.map",
+    "static/js/2.245dfd11.chunk.js": "/haptic-cellulo/static/js/2.245dfd11.chunk.js",
+    "static/js/2.245dfd11.chunk.js.map": "/haptic-cellulo/static/js/2.245dfd11.chunk.js.map",
     "static/js/3.e1fa58c4.chunk.js": "/haptic-cellulo/static/js/3.e1fa58c4.chunk.js",
     "static/js/3.e1fa58c4.chunk.js.map": "/haptic-cellulo/static/js/3.e1fa58c4.chunk.js.map",
     "index.html": "/haptic-cellulo/index.html",
     "static/css/2.4c97ca4f.chunk.css.map": "/haptic-cellulo/static/css/2.4c97ca4f.chunk.css.map",
-    "static/css/main.f4f0fdaf.chunk.css.map": "/haptic-cellulo/static/css/main.f4f0fdaf.chunk.css.map",
-    "static/js/2.b8c6ede4.chunk.js.LICENSE.txt": "/haptic-cellulo/static/js/2.b8c6ede4.chunk.js.LICENSE.txt",
+    "static/css/main.ddd9547e.chunk.css.map": "/haptic-cellulo/static/css/main.ddd9547e.chunk.css.map",
+    "static/js/2.245dfd11.chunk.js.LICENSE.txt": "/haptic-cellulo/static/js/2.245dfd11.chunk.js.LICENSE.txt",
     "static/media/cytosol.5d6e8b37.mp4": "/haptic-cellulo/static/media/cytosol.5d6e8b37.mp4",
     "static/media/golgi_body.48b36d1d.mp4": "/haptic-cellulo/static/media/golgi_body.48b36d1d.mp4",
     "static/media/lysosome.6aab8551.mp4": "/haptic-cellulo/static/media/lysosome.6aab8551.mp4",
@@ -23,8 +23,8 @@
   "entrypoints": [
     "static/js/runtime-main.4971f2d4.js",
     "static/css/2.4c97ca4f.chunk.css",
-    "static/js/2.b8c6ede4.chunk.js",
-    "static/css/main.f4f0fdaf.chunk.css",
-    "static/js/main.dd2f1990.chunk.js"
+    "static/js/2.245dfd11.chunk.js",
+    "static/css/main.ddd9547e.chunk.css",
+    "static/js/main.b5246651.chunk.js"
   ]
 }
